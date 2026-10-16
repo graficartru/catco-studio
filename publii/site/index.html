@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CatCo Studio — Студия дизайна · 3D-моделирование, графика, 3D-печать</title>
+  <meta name="description" content="CatCo Studio — студия дизайна: 3D-моделирование, 2D и векторная графика, подготовка моделей к 3D-печати. Превращаем идеи в цифровую форму.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff6a00'/%3E%3Cpath d='M20 26l5-9 5 7h4l5-7 5 9c2 4 2 12-2 18-3 5-8 7-10 7s-7-2-10-7c-4-6-4-14-2-18z' fill='%23fff'/%3E%3Ccircle cx='26' cy='36' r='3' fill='%23ff6a00'/%3E%3Ccircle cx='38' cy='36' r='3' fill='%23ff6a00'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- ============ НАВИГАЦИЯ ============ -->
+  <header class="nav" id="nav">
+    <a class="logo" href="#home" aria-label="CatCo Studio — на главную">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M20 26l5-9 5 7h4l5-7 5 9c2 4 2 12-2 18-3 5-8 7-10 7s-7-2-10-7c-4-6-4-14-2-18z" fill="#fff"/><circle cx="26" cy="36" r="3" fill="#ff6a00"/><circle cx="38" cy="36" r="3" fill="#ff6a00"/></svg>
+      </span>
+      <span>CatCo Studio<small>Студия дизайна</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#portfolio">Портфолио</a>
+      <a href="#process">Процесс</a>
+      <a href="#whyus">О студии</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#order">Контакты</a>
+    </nav>
+    <a href="#order" class="btn btn-primary nav-cta">Обсудить проект</a>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg" aria-hidden="true"><!-- слайды из data.json --></div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow reveal visible">Digital Design · 3D · Vector</span>
+        <h1 id="heroTitle" class="reveal visible">Превращаем идеи<br>в <span class="grad">цифровую форму</span></h1>
+        <p class="sub reveal visible d1" id="heroSub">3D-моделирование, визуальный дизайн и векторная графика. Создаём цифровые объекты, которые впечатляют на экране и обретают физическую форму.</p>
+        <div class="hero-actions reveal visible d2">
+          <a href="#order" class="btn btn-primary">Обсудить проект</a>
+          <a href="#portfolio" class="btn btn-ghost" id="toWorks">Смотреть работы ↓</a>
+        </div>
+        <div class="hero-stats reveal visible d3">
+          <div><b>3D</b>моделирование и прототипы</div>
+          <div><b>2D / SVG</b>графика любой сложности</div>
+          <div><b>FDM / SLA</b>подготовка к печати</div>
+        </div>
+      </div>
+      <div id="hero-canvas-wrap" aria-hidden="true">
+        <div class="hero-orbit-label">// live 3D preview — hardsurface concept</div>
+      </div>
+    </div>
+
+    <div class="hero-dots" id="heroDots" role="tablist" aria-label="Фоновый слайдер"></div>
+    <div class="scroll-hint" aria-hidden="true"><i></i>scroll</div>
+  </section>
+
+  <!-- ============ УСЛУГИ ============ -->
+  <section id="services">
+    <div class="container">
+      <span class="eyebrow reveal">Что мы делаем</span>
+      <h2 class="section-title reveal">Четыре направления —<br>один уровень точности</h2>
+      <p class="section-sub reveal d1">Наведите курсор на карточку, чтобы узнать подробности. Каждая услуга — от концепта до файлов, готовых к использованию.</p>
+      <div class="services-grid" id="servicesGrid"><!-- flip-карточки из data.json --></div>
+    </div>
+  </section>
+
+  <!-- ============ ПОРТФОЛИО ============ -->
+  <section id="portfolio">
+    <div class="container">
+      <span class="eyebrow reveal">Работы студии</span>
+      <h2 class="section-title reveal">Из цифровой идеи<br>в готовый результат</h2>
+      <p class="section-sub reveal d1">Кликните по проекту, чтобы открыть подробный разбор: задача, процесс разработки, результат и сравнение «wireframe → render» с помощью вертикального слайдера.</p>
+      <div class="filters reveal d1" id="filters" role="group" aria-label="Фильтры портфолио"></div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <!-- ============ ПРОЦЕСС ============ -->
+  <section id="process">
+    <div class="container">
+      <span class="eyebrow reveal">Как мы работаем</span>
+      <h2 class="section-title reveal">От идеи до результата</h2>
+      <p class="section-sub reveal d1">Прозрачный процесс из четырёх этапов — вы всегда видите, на какой стадии находится проект.</p>
+      <div class="process-track" id="processTrack"></div>
+    </div>
+  </section>
+
+  <!-- ============ ПОЧЕМУ МЫ ============ -->
+  <section id="whyus">
+    <div class="container">
+      <span class="eyebrow reveal">Преимущества</span>
+      <h2 class="section-title reveal">Почему выбирают нас</h2>
+      <div class="why-grid" id="whyGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ ФОРМАТЫ ============ -->
+  <section id="formats">
+    <div class="container">
+      <span class="eyebrow reveal">Форматы файлов</span>
+      <h2 class="section-title reveal">Передаём файлы в нужном формате</h2>
+      <div class="formats-wrap" id="formatsWrap"></div>
+      <p class="formats-note reveal" id="formatsNote"></p>
+    </div>
+  </section>
+
+  <!-- ============ ОТЗЫВЫ ============ -->
+  <section id="reviews">
+    <div class="container">
+      <span class="eyebrow reveal">Отзывы</span>
+      <h2 class="section-title reveal">Что говорят заказчики</h2>
+      <div class="t-slider reveal d1">
+        <div class="t-arrows">
+          <button class="t-arrow" id="tPrev" aria-label="Предыдущий отзыв">←</button>
+          <button class="t-arrow" id="tNext" aria-label="Следующий отзыв">→</button>
+        </div>
+        <div class="t-viewport"><div class="t-track" id="tTrack"></div></div>
+        <div class="t-dots" id="tDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ЗАКАЗ ПРОЕКТА (CTA + ФОРМА) ============ -->
+  <section id="order">
+    <div class="container">
+      <div class="order-grid">
+        <div>
+          <span class="eyebrow reveal">Новый проект</span>
+          <h2 class="section-title reveal">Есть идея?<br>Давайте придадим ей форму.</h2>
+          <p class="section-sub reveal d1">Расскажите о своей задаче — поможем выбрать оптимальное решение и подготовим проект под ваши цели.</p>
+          <div class="reveal d2" style="margin-top:34px"><a href="#briefForm" class="btn btn-primary">Обсудить проект</a></div>
+        </div>
+        <div class="order-visual reveal d2">
+          <img src="/assets/img/gen/cta_scene.jpg" alt="Абстрактная sci-fi 3D-композиция из геометрических объектов CatCo Studio" loading="lazy">
+        </div>
+      </div>
+
+      <!-- ---------- ФОРМА ЗАЯВКИ ---------- -->
+      <div class="form-card reveal" id="briefForm">
+        <span class="eyebrow">Бриф онлайн</span>
+        <h3 style="font-size:clamp(24px,3vw,36px);margin:14px 0 28px;">Заполните форму заявки</h3>
+        <form id="orderForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="fName">Имя *</label>
+              <input type="text" id="fName" name="name" placeholder="Как к вам обращаться" autocomplete="name">
+              <span class="err-msg" data-for="fName"></span>
+            </div>
+            <div class="field">
+              <label for="fContact">Email или мессенджер *</label>
+              <input type="text" id="fContact" name="contact" placeholder="you@mail.com или @nickname" autocomplete="email">
+              <span class="err-msg" data-for="fContact"></span>
+            </div>
+            <div class="field">
+              <label for="fPhone">Телефон *</label>
+              <input type="tel" id="fPhone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+              <span class="err-msg" data-for="fPhone"></span>
+            </div>
+            <div class="field">
+              <label for="fService">Тип услуги *</label>
+              <select id="fService" name="service">
+                <option value="">Выберите услугу…</option>
+              </select>
+              <span class="err-msg" data-for="fService"></span>
+            </div>
+            <div class="field full">
+              <label for="fDesc">Описание задачи *</label>
+              <textarea id="fDesc" name="description" placeholder="Что нужно сделать: объект, стиль, размеры, среда использования…"></textarea>
+              <span class="err-msg" data-for="fDesc"></span>
+            </div>
+            <div class="field">
+              <label for="fDeadline">Желаемые сроки</label>
+              <input type="text" id="fDeadline" name="deadline" placeholder="Например: до конца ноября / не горит">
+              <span class="err-msg" data-for="fDeadline"></span>
+            </div>
+            <div class="field">
+              <label>Референсы, изображения или ТЗ</label>
+              <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Прикрепить файлы">
+                Перетащите файлы сюда или <u>выберите на устройстве</u><br>
+                <small>PNG · JPG · SVG · PDF · STL · OBJ — до 5 файлов</small>
+              </div>
+              <input type="file" id="fFiles" name="files" multiple hidden accept=".png,.jpg,.jpeg,.webp,.svg,.pdf,.ai,.eps,.cdr,.stl,.obj,.step,.stp,.fbx,.glb,.3mf,.blend,.zip,.rar">
+              <div class="file-list" id="fileList"></div>
+            </div>
+          </div>
+          <div class="form-foot">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Отправить заявку</button>
+            <p class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="#" class="pp-link" style="color:var(--accent-2)">политикой конфиденциальности</a>.</p>
+          </div>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ КОНТАКТЫ / ФУТЕР ============ -->
+  <footer id="contacts">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="logo" href="#home">
+            <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M20 26l5-9 5 7h4l5-7 5 9c2 4 2 12-2 18-3 5-8 7-10 7s-7-2-10-7c-4-6-4-14-2-18z" fill="#fff"/><circle cx="26" cy="36" r="3" fill="#ff6a00"/><circle cx="38" cy="36" r="3" fill="#ff6a00"/></svg></span>
+            <span>CatCo Studio<small>Студия дизайна</small></span>
+          </a>
+          <p id="footerDesc">3D-моделирование, визуальный дизайн, векторная графика и подготовка моделей к 3D-печати.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <a href="#services">Услуги</a>
+          <a href="#portfolio">Портфолио</a>
+          <a href="#process">Процесс</a>
+          <a href="#formats">Форматы файлов</a>
+          <a href="#order">Оставить заявку</a>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a href="mailto:hello@catcostudio.design" id="footerEmail">hello@catcostudio.design</a>
+          <a href="tel:+79000000000" id="footerPhone">+7 (900) 000-00-00</a>
+        </div>
+        <div class="footer-col">
+          <h4>Мы в сети</h4>
+          <ul id="socialList"></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> CatCo Studio — Студия дизайна. Все работы показаны как демонстрационные кейсы студии.</span>
+        <a href="#" class="pp-link">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- модалка проекта -->
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-label="Карточка проекта">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- модалка политики -->
+  <div class="pp-modal" id="ppModal" role="dialog" aria-modal="true" aria-label="Политика конфиденциальности">
+    <div class="pp-card">
+      <button class="modal-close" id="ppClose" aria-label="Закрыть">✕</button>
+      <h3>Политика конфиденциальности</h3>
+      <p>CatCo Studio («студия») обрабатывает персональные данные пользователей исключительно для обратной связи по заявкам на проектирование и дизайн-услуги.</p>
+      <ul>
+        <li>Мы собираем только те данные, которые вы указываете добровольно в форме заявки: имя, контакты, описание задачи и прикреплённые материалы.</li>
+        <li>Данные используются только для связи с вами и подготовки коммерческого предложения; третьим лицам не передаются.</li>
+        <li>До подключения сервера обработки форм все поля заявки сохраняются локально в вашем браузере (localStorage) и никуда не отправляются.</li>
+        <li>Вы можете удалить свои данные, очистив localStorage сайта, или попросить нас прекратить обработку, написав на почту студии.</li>
+        <li>Сайт не использует рекламные трекеры и аналитику, собирающую персональные данные.</li>
+      </ul>
+      <p>По вопросам обработки данных пишите на <a href="mailto:hello@catcostudio.design" style="color:var(--accent-2)">hello@catcostudio.design</a>.</p>
+    </div>
+  </div>
+
+  <!-- three.js — локальная копия библиотеки (резервный CDN) -->
+  <!-- Данные встроены в страницу: работают при экспорте в Publii без отдельного запроса data.json -->
+  <script id="catco-data" type="application/json">
+{
+  "studio": {
+    "name": "CatCo Studio",
+    "tagline": "Студия дизайна",
+    "description": "3D-моделирование, визуальный дизайн, векторная графика и подготовка моделей к 3D-печати.",
+    "email": "hello@catcostudio.design",
+    "phone": "+7 (900) 000-00-00",
+    "social": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/"
+      },
+      {
+        "label": "ArtStation",
+        "url": "https://www.artstation.com/"
+      },
+      {
+        "label": "Telegram",
+        "url": "https://web.telegram.org/"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Превращаем идеи в цифровую форму",
+    "subtitle": "3D-моделирование, визуальный дизайн и векторная графика. Создаём цифровые объекты, которые впечатляют на экране и обретают физическую форму.",
+    "ctaPrimary": "Обсудить проект",
+    "ctaSecondary": "Смотреть работы",
+    "slides": [
+      {
+        "src": "/assets/img/gen/hero1_render.jpg",
+        "alt": "3D-рендер цифровой модели"
+      },
+      {
+        "src": "/assets/img/gen/hero2_vector.jpg",
+        "alt": "Яркая векторная иллюстрация"
+      },
+      {
+        "src": "/assets/img/gen/hero3_printer.jpg",
+        "alt": "Современный 3D-принтер"
+      }
+    ]
+  },
+  "services": [
+    {
+      "num": "01",
+      "title": "3D-моделирование",
+      "desc": "Создание трёхмерных объектов, предметных моделей, деталей, корпусов, концептуальных форм и цифровых прототипов.",
+      "img": "/assets/img/gen/svc_3d.jpg"
+    },
+    {
+      "num": "02",
+      "title": "2D-графика и дизайн",
+      "desc": "Разработка графических материалов, иллюстраций, рекламной графики, концептов, визуальных элементов и цифрового контента.",
+      "img": "/assets/img/gen/svc_2d.jpg"
+    },
+    {
+      "num": "03",
+      "title": "Векторная графика",
+      "desc": "Перевод изображений в вектор, отрисовка логотипов, создание SVG-графики, контуров, технических схем и масштабируемых иллюстраций.",
+      "img": "/assets/img/gen/svc_vector.jpg"
+    },
+    {
+      "num": "04",
+      "title": "3D-модели для печати",
+      "desc": "Разработка и подготовка моделей для 3D-печати: проверка геометрии, толщины стенок, замкнутости сетки, зазоров и других параметров, важных для производства физического объекта.",
+      "img": "/assets/img/gen/svc_print.jpg"
+    }
+  ],
+  "portfolioFilters": [
+    {
+      "id": "all",
+      "label": "Все проекты"
+    },
+    {
+      "id": "modeling",
+      "label": "3D-моделирование"
+    },
+    {
+      "id": "graphics",
+      "label": "2D-графика"
+    },
+    {
+      "id": "vector",
+      "label": "Векторная графика"
+    },
+    {
+      "id": "print",
+      "label": "3D-печать"
+    }
+  ],
+  "projects": [
+    {
+      "id": "drone",
+      "title": "Корпус FPV-дрона",
+      "category": "modeling",
+      "categoryLabel": "3D-моделирование",
+      "year": "2025",
+      "tags": [
+        "Hard Surface",
+        "CAD",
+        "Прототип"
+      ],
+      "cover": "/assets/img/gen/p_drone.jpg",
+      "task": "Проектирование лёгкого защитного корпуса гоночного FPV-дрона с посадочными местами под электродвигатели и стандартную крепёжную платину.",
+      "process": [
+        "Сбор референсов и габаритных требований",
+        "Моделирование силовой рамы и обтекателей",
+        "Проверка зазоров под пропеллеры",
+        "Подготовка файлов для FDM-печати"
+      ],
+      "result": "Компактный корпус с интегрированными рёбрами жёсткости, напечатанный и протестированный заказчиком.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_drone_wire.jpg",
+          "caption": "Каркас модели (wireframe)"
+        },
+        {
+          "src": "/assets/img/gen/p_drone.jpg",
+          "caption": "Финальный визуализированный образ"
+        }
+      ],
+      "compare": {
+        "before": "assets/img/gen/p_drone_wire.jpg",
+        "after": "assets/img/gen/p_drone.jpg",
+        "beforeLabel": "Wireframe",
+        "afterLabel": "Render"
+      }
+    },
+    {
+      "id": "gear",
+      "title": "Планетарный редуктор",
+      "category": "modeling",
+      "categoryLabel": "3D-моделирование",
+      "year": "2025",
+      "tags": [
+        "Инженерия",
+        "Детали",
+        "STEP"
+      ],
+      "cover": "/assets/img/gen/p_gear.jpg",
+      "task": "Моделирование комплекта шестерён малогабаритного редуктора с корректным зацеплением и техническими допусками.",
+      "process": [
+        "Расчёт передаточного отношения",
+        "Параметрическое моделирование зубчатого профиля",
+        "Сборка узла и проверка зацепления",
+        "Экспорт в STEP и STL"
+      ],
+      "result": "Полная параметрическая сборка редуктора, пригодная для ЧПУ-изготовления и 3D-печати прототипа.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_gear.jpg",
+          "caption": "Сборка редуктора"
+        }
+      ]
+    },
+    {
+      "id": "vase",
+      "title": "Дизайнерская ваза «Spiral»",
+      "category": "print",
+      "categoryLabel": "3D-печать",
+      "year": "2025",
+      "tags": [
+        "Декор",
+        "FDM",
+        "Параметрика"
+      ],
+      "task": "Разработка декоративной вазы со спиральным профилем, оптимизированной под послойную FDM-печать без поддержек.",
+      "process": [
+        "Параметрический скрипт поверхности",
+        "Анализ нависаний и толщины стенок",
+        "Замыкание сетки и подготовка 3MF",
+        "Тестовая печать образца"
+      ],
+      "result": "Модель с равномерной толщиной стенки 2,4 мм, напечатанная в один проход без поддержек.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_vase.jpg",
+          "caption": "Ваза Spiral"
+        }
+      ],
+      "cover": "/assets/img/gen/p_vase.jpg"
+    },
+    {
+      "id": "logo",
+      "title": "Айдентика CatCo",
+      "category": "vector",
+      "categoryLabel": "Векторная графика",
+      "year": "2025",
+      "tags": [
+        "Логотип",
+        "SVG",
+        "Бренд"
+      ],
+      "task": "Отрисовка знаковой группы в векторе: геометрический кот-марк, адаптивный под любые размеры носителей.",
+      "process": [
+        "Построение сетки знака",
+        "Отрисовка контуров в кривых Безье",
+        "Настройка вариантов цвета",
+        "Экспорт SVG / AI / EPS / PDF"
+      ],
+      "result": "Чистый масштабируемый векторный знак без трассировки растровых артефактов.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_logo.jpg",
+          "caption": "Знак айдентики"
+        }
+      ],
+      "cover": "/assets/img/gen/p_logo.jpg"
+    },
+    {
+      "id": "poster",
+      "title": "Серия постеров «Shapes»",
+      "category": "graphics",
+      "categoryLabel": "2D-графика",
+      "year": "2025",
+      "tags": [
+        "Иллюстрация",
+        "Постер",
+        "Композиция"
+      ],
+      "task": "Создание яркой серии печатных постеров на основе абстрактной геометрической композиции.",
+      "process": [
+        "Цветовая схема и палитра",
+        "Компоновка форм и ритма",
+        "Типографика серии",
+        "Подготовка к печати CMYK"
+      ],
+      "result": "Три законченных плаката единой серии в печатном формате 60×85 см.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_poster.jpg",
+          "caption": "Постер серии Shapes"
+        }
+      ],
+      "cover": "/assets/img/gen/p_poster.jpg"
+    },
+    {
+      "id": "emblem",
+      "title": "Восстановление эмблемы из растра",
+      "category": "vector",
+      "categoryLabel": "Векторная графика",
+      "year": "2025",
+      "tags": [
+        "Трассировка",
+        "Контур",
+        "CDR"
+      ],
+      "task": "Перевод изношенного растрового изображения эмблемы в чистый вектор для печати на текстиле и УФ-вывеске.",
+      "process": [
+        "Анализ исходного растра",
+        "Ручная отрисовка контуров",
+        "Удаление артефактов сжатия",
+        "Передача SVG и CDR"
+      ],
+      "result": "Масштабируемый вектор без потери геометрии оригинала.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_emblem.jpg",
+          "caption": "Векторная эмблема"
+        }
+      ],
+      "cover": "/assets/img/gen/p_emblem.jpg"
+    },
+    {
+      "id": "helmet",
+      "title": "Шлем «Nova» sci-fi",
+      "category": "modeling",
+      "categoryLabel": "3D-моделирование",
+      "year": "2026",
+      "tags": [
+        "Concept",
+        "Hard Surface",
+        "GLB"
+      ],
+      "task": "Концептуальное моделирование шлема в стилистике научной фантастики для использования в CGI-сцене и как AR-модель.",
+      "process": [
+        "Эскизы силуэта",
+        "Блокинг формы и сплайновые панели",
+        "Retopo и запекание нормалей",
+        "Сборка GLB для web/AR"
+      ],
+      "result": "Готовая real-time модель с корректной сеткой и текстурами PBR.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_helmet_wire.jpg",
+          "caption": "Сетка шлема"
+        },
+        {
+          "src": "/assets/img/gen/p_helmet.jpg",
+          "caption": "Финальный вид"
+        }
+      ],
+      "compare": {
+        "before": "assets/img/gen/p_helmet_wire.jpg",
+        "after": "assets/img/gen/p_helmet.jpg",
+        "beforeLabel": "Wireframe",
+        "afterLabel": "Render"
+      },
+      "cover": "/assets/img/gen/p_helmet_wire.jpg"
+    },
+    {
+      "id": "exo",
+      "title": "Сегмент экзоскелета",
+      "category": "print",
+      "categoryLabel": "3D-печать",
+      "year": "2026",
+      "tags": [
+        "Прототип",
+        "PETG",
+        "Шарниры"
+      ],
+      "task": "Моделирование шарнирного сегмента экзоскелета руки для печати на FDM-принтере с подвижными соединениями.",
+      "process": [
+        "Кинематическая схема сустава",
+        "Моделирование звеньев и осей",
+        "Расчёт print-in-place зазоров 0,3 мм",
+        "Нарезка и контроль деформаций"
+      ],
+      "result": "Рабочий печатный прототип с подвижными узлами без дополнительного крепежа.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_exo_wire.jpg",
+          "caption": "Каркас сегмента"
+        },
+        {
+          "src": "/assets/img/gen/p_exo.jpg",
+          "caption": "Готовая модель"
+        }
+      ],
+      "compare": {
+        "before": "assets/img/gen/p_exo_wire.jpg",
+        "after": "assets/img/gen/p_exo.jpg",
+        "beforeLabel": "Wireframe",
+        "afterLabel": "Render"
+      },
+      "cover": "/assets/img/gen/p_exo_wire.jpg"
+    },
+    {
+      "id": "pattern",
+      "title": "Паттерн для мерча",
+      "category": "graphics",
+      "categoryLabel": "2D-графика",
+      "year": "2025",
+      "tags": [
+        "Pattern",
+        "Иллюстрация",
+        "TIFF"
+      ],
+      "task": "Разработка бесшовного графического паттерна для печати на ткани и упаковке.",
+      "process": [
+        "Мотив и цветовая система",
+        "Построение бесшовного тайла",
+        "Проверка стыковки",
+        "Экспорт TIFF / PNG / SVG"
+      ],
+      "result": "Бесшовный паттерн, готовый к ротационной печати.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_tile.jpg",
+          "caption": "Бесшовный паттерн"
+        }
+      ],
+      "cover": "/assets/img/gen/p_tile.jpg"
+    },
+    {
+      "id": "bracket",
+      "title": "Кронштейн для электрокорпуса",
+      "category": "print",
+      "categoryLabel": "3D-печать",
+      "year": "2025",
+      "tags": [
+        "Инженерия",
+        "STL",
+        "STEP"
+      ],
+      "task": "Подготовка металлического кронштейна к аддитивному производству: ремонт геометрии и контроль технологичности.",
+      "process": [
+        "Получение исходной CAD-модели",
+        "Проверка замкнутости и толщины стенок",
+        "Оптимизация ориентации печати",
+        "Выдача STL / 3MF с техкартой"
+      ],
+      "result": "Модель, напечатанная с первого запуска без доработки геометрии.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_printpart.jpg",
+          "caption": "Кронштейн на столе принтера"
+        }
+      ],
+      "cover": "/assets/img/gen/p_printpart.jpg"
+    },
+    {
+      "id": "fidget",
+      "title": "Механический fidget-куб",
+      "category": "modeling",
+      "categoryLabel": "3D-моделирование",
+      "year": "2026",
+      "tags": [
+        "Гаджет",
+        "MAYA",
+        "FBX"
+      ],
+      "task": "Моделирование игрового механизма с подшипниками и вращающимися шестернями для серийного производства.",
+      "process": [
+        "Моделирование корпусных половин",
+        "Зубчатые вставки и оси",
+        "Проверка зазоров вращения",
+        "Экспорт FBX / OBJ / STL"
+      ],
+      "result": "Полная сборка механизма, готовая к оснастке и печати опытной партии.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_fidget.jpg",
+          "caption": "Механизм куба"
+        }
+      ],
+      "cover": "/assets/img/gen/p_fidget.jpg"
+    },
+    {
+      "id": "concept",
+      "title": "От эскиза к объекту",
+      "category": "graphics",
+      "categoryLabel": "2D-графика",
+      "year": "2025",
+      "tags": [
+        "Concept",
+        "До/После",
+        "Визуализация"
+      ],
+      "task": "Показ полного цикла: от чернового концепт-эскиза до финального визуального образа изделия.",
+      "process": [
+        "Эскизная композиция",
+        "Уточнение формы",
+        "Материалы и свет",
+        "Финальный рендер"
+      ],
+      "result": "Наглядное сравнение исходной идеи и готового результата.",
+      "gallery": [
+        {
+          "src": "/assets/img/gen/p_concept.jpg",
+          "caption": "Sketch → Render"
+        }
+      ],
+      "compare": {
+        "before": "assets/img/gen/p_concept.jpg",
+        "after": "assets/img/gen/p_gear.jpg",
+        "beforeLabel": "Эскиз",
+        "afterLabel": "Результат"
+      },
+      "cover": "/assets/img/gen/p_concept.jpg"
+    }
+  ],
+  "process": [
+    {
+      "num": "01",
+      "title": "Бриф",
+      "desc": "Изучаем задачу, референсы и технические требования."
+    },
+    {
+      "num": "02",
+      "title": "Концепция",
+      "desc": "Определяем форму, стиль и направление разработки."
+    },
+    {
+      "num": "03",
+      "title": "Создание",
+      "desc": "Выполняем моделирование, отрисовку и согласование."
+    },
+    {
+      "num": "04",
+      "title": "Финальный результат",
+      "desc": "Передаём готовые файлы в нужных форматах."
+    }
+  ],
+  "whyUs": [
+    {
+      "title": "Индивидуальный подход",
+      "desc": "Каждый проект разбирается отдельно: задача, среда использования и ограничения производства."
+    },
+    {
+      "title": "Внимание к деталям",
+      "desc": "Геометрическая точность, чистая сетка и корректные размеры — основа всех наших моделей."
+    },
+    {
+      "title": "Нужные форматы",
+      "desc": "Передаём файлы в форматах, подходящих под конкретную задачу заказчика."
+    },
+    {
+      "title": "Эстетика и инженерия",
+      "desc": "Сочетаем выразительный дизайн с технической грамотностью модели."
+    },
+    {
+      "title": "Прозрачные этапы",
+      "desc": "Видите прогресс на каждом шаге: концепция, промежуточные версии, финал."
+    },
+    {
+      "title": "С нуля или по референсам",
+      "desc": "Разрабатываем как оригинальные решения, так и модели по готовым эскизам и образцам."
+    }
+  ],
+  "formats": [
+    {
+      "group": "3D-модели",
+      "items": [
+        "BLEND",
+        "3DS",
+        "MAYA",
+        "STL",
+        "OBJ",
+        "STEP",
+        "FBX",
+        "GLB",
+        "3MF"
+      ]
+    },
+    {
+      "group": "Векторная графика",
+      "items": [
+        "SVG",
+        "CDR",
+        "AI",
+        "EPS",
+        "PDF"
+      ]
+    },
+    {
+      "group": "Растр и визуализации",
+      "items": [
+        "PNG",
+        "JPG",
+        "TIFF",
+        "TARGA"
+      ]
+    }
+  ],
+  "formatsNote": "Доступность конкретных форматов зависит от типа проекта и требований заказчика. Мы не гарантируем автоматическую совместимость каждого формата с любым программным обеспечением или 3D-принтером — итоговый набор файлов согласуется на этапе брифа.",
+  "testimonials": [
+    {
+      "name": "Игорь Ветров",
+      "role": "Основатель дроновой мастерской",
+      "text": "Корпус дрона вернули идеально под наши детали: всё сошлось по посадочным с первого раза. Отдельное спасибо за подготовку файлов к печати.",
+      "avatar": "/assets/img/gen/av1.png"
+    },
+    {
+      "name": "Марина Соловьёва",
+      "role": "Арт-директор рекламного агентства",
+      "text": "Векторную графику сделали быстро и чисто — логотип отлично держится и на визитке, и на билборде. Приятно работать с командой, которая понимает задачу.",
+      "avatar": "/assets/img/gen/av2.png"
+    },
+    {
+      "name": "Алексей Дорн",
+      "role": "Инженер-конструктор",
+      "text": "Редуктор смоделирован аккуратно, зазоры и зацепление проверены. Получил STEP-файлы, которые сразу встали в нашу сборку без переделок.",
+      "avatar": "/assets/img/gen/av3.png"
+    },
+    {
+      "name": "Елена Ким",
+      "role": "Владелец бренда декора",
+      "text": "Ваза для печати получилась именно такой, как на эскизе, и напечаталась без поддержек. Видно, что думают о производстве ещё на этапе модели.",
+      "avatar": "/assets/img/gen/av4.png"
+    },
+    {
+      "name": "Дмитрий Волков",
+      "role": "Продакт-менеджер gadget-стартапа",
+      "text": "Люблю их процесс: этапы прозрачные, всегда видно промежуточный результат. Механизм fidget-куба собрали в срок и во всех нужных форматах.",
+      "avatar": "/assets/img/gen/av5.png"
+    },
+    {
+      "name": "Анна Райт",
+      "role": "Иллюстратор",
+      "text": "Заказывала перевод старых растровых эмблем в вектор. Результат безупречный — чистые кривые Безье, никаких артефактов автотрассировки.",
+      "avatar": "/assets/img/gen/av6.png"
+    }
+  ],
+  "serviceOptions": [
+    "3D-моделирование",
+    "2D-графика",
+    "Векторная отрисовка",
+    "Подготовка моделей к 3D-печати",
+    "Другое / пока не определился"
+  ],
+  "form": {
+    "backendConfigured": false,
+    "endpoint": "",
+    "note": "Отправка заявки через backend или сервис обработки форм ещё не настроена. Форма выполняет проверку данных и сохраняет черновик обращения локально в браузере; реальная доставка письма не выполняется."
+  }
+}
+  </script>
+  <script>window.CATCO_DATA = JSON.parse(document.getElementById("catco-data").textContent);</script>
+  <script src="/js/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https:\/\/cdn.jsdelivr.net\/npm\/three@0.149.0\/build\/three.min.js"><\/script>');
+    }
+  </script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
