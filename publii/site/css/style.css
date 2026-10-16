@@ -132,16 +132,24 @@ section { position: relative; padding: clamp(80px, 10vw, 150px) 0; }
 
 /* ---------- HERO ---------- */
 .hero { min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 90px; }
+/* hero-bg НЕ двигается — ::after (затемнение) всегда перекрывает картинку */
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
+/* параллакс применяется к внутреннему слою со слайдами */
+.hero-parallax {
+  position: absolute; inset: -10%;
+  will-change: transform;
+  transition: transform .25s cubic-bezier(.22,.61,.36,1);
+}
 .hero-slide {
-  position: absolute; inset: -4%;
+  position: absolute; inset: 0;
   background-size: cover; background-position: center;
   opacity: 0; transition: opacity 1.6s ease, transform 9s linear;
   transform: scale(1.04);
 }
 .hero-slide.active { opacity: 1; transform: scale(1.1); }
+/* затемнение — на hero-bg, не смещается вместе с картинкой */
 .hero-bg::after {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute; inset: 0; z-index: 3;
   background:
     linear-gradient(90deg, rgba(8, 9, 13, .96) 0%, rgba(8, 9, 13, .78) 45%, rgba(8, 9, 13, .35) 100%),
     linear-gradient(0deg, var(--bg-0) 2%, transparent 40%);

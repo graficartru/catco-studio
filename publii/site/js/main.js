@@ -55,10 +55,14 @@
      ============================================================ */
   function initHeroSlider(slides) {
     const bg = $('#heroBg'), dots = $('#heroDots');
+    /* внутренний слой для параллакса — сам hero-bg остаётся на месте,
+       поэтому градиентное затемнение (::after) всегда перекрывает картинку */
+    let layer = bg.querySelector('.hero-parallax');
+    if (!layer) { layer = el('div', 'hero-parallax'); bg.appendChild(layer); }
     slides.forEach((s, i) => {
       const d = el('div', 'hero-slide' + (i === 0 ? ' active' : ''));
       d.style.backgroundImage = `url("${s.src}")`;
-      bg.appendChild(d);
+      layer.appendChild(d);
       const b = el('button', i === 0 ? 'active' : '');
       b.setAttribute('aria-label', 'Слайд ' + (i + 1));
       b.addEventListener('click', () => go(i));
@@ -91,7 +95,9 @@
     (function raf() {
       cx += (tx - cx) * .06; cy += (ty - cy) * .06;
       copy.style.transform = `translate(${cx * -14}px, ${cy * -10}px)`;
-      if (bg) bg.style.transform = `translate(${cx * 22}px, ${cy * 16}px)`;
+      /* двигаем внутренний слой со слайдами, а не hero-bg — затемнение остаётся на месте */
+      const layer = bg && bg.querySelector('.hero-parallax');
+      if (layer) layer.style.transform = `translate(${cx * 22}px, ${cy * 16}px)`;
       if (wrap && wrap.firstElementChild && wrap.firstElementChild.tagName === 'CANVAS') {
         // three.js сцена сама реагирует на мышь
       }
