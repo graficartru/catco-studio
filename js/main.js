@@ -7,17 +7,41 @@
 
   let DATA = null;
 
-  /* ---------- загрузка data.json (fetch + резервныйXHR для file://) ---------- */
+  /* ---------- загрузка данных: приоритет — встроенный <script id="catco-data">,
+       затем data.json рядом со страницей (работает и по file://, и на хостинге) ---------- */
   function loadData() {
-    return fetch('data.json')
+    const inline = document.getElementById('catco-data');
+    if (inline && inline.textContent.trim()) {
+      try { return Promise.resolve(JSON.parse(inline.textContent)); } catch (e) { console.warn(e); }
+    }
+    const base = (document.baseURI || location.href).replace(/[^/]*$/, ''); // корень страницы
+    const url = base + 'data.json';
+    return fetch(url)
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .catch(() => new Promise((res, rej) => {
         const x = new XMLHttpRequest();
-        x.open('GET', 'data.json', true);
+        x.open('GET', url, true);
         x.onload = () => { try { res(JSON.parse(x.responseText)); } catch (e) { rej(e); } };
         x.onerror = rej;
         x.send();
       }));
+  }
+
+  /* ---------- нормализация путей картинок из данных под корень страницы ---------- */
+  function normalizePaths(data) {
+    const base = (document.baseURI || location.href).replace(/[^/]*$/, '');
+    const fix = p => p.replace(/^\.?\/?assets\//, base + 'assets/').replace(/^\/assets\//, base + 'assets/');
+    const walk = o => {
+      if (Array.isArray(o)) o.forEach(walk);
+      else if (o && typeof o === 'object') {
+        Object.keys(o).forEach(k => {
+          if (typeof o[k] === 'string' && /(^|\/)assets\//.test(o[k])) o[k] = fix(o[k]);
+          else walk(o[k]);
+        });
+      }
+    };
+    walk(data);
+    return data;
   }
 
   const $ = s => document.querySelector(s);
@@ -515,6 +539,22 @@
       $('#portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
+  // ===== Видеокурсы: клик по карточке -> встроенный YouTube-плеер =====
+  function initVideoCourses() {
+    $$('.vc-card').forEach(card => {
+      const id = card.getAttribute('data-video-id');
+      if (!id) return;
+      const activate = () => {
+        const thumb = card.querySelector('.vc-thumb');
+        if (!thumb || thumb.dataset.playing) return;
+        thumb.dataset.playing = '1';
+        thumb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" title="Видеокурс CatCo Studio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        thumb.style.aspectRatio = '16/9';
+      };
+      card.addEventListener('click', activate);
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+    });
+  }
   function initReveal() {
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
@@ -547,7 +587,7 @@
      Старт
      ============================================================ */
   loadData().then(data => {
-    DATA = data;
+    DATA = normalizePaths(data);
     // hero-тексты из json (синхронизируем с разметкой)
     $('#heroTitle').innerHTML = data.hero.title.replace('в цифровую форму', 'в<br><span class="grad">цифровую форму</span>');
     $('#heroSub').textContent = data.hero.subtitle;
@@ -563,6 +603,7 @@
     initForm(data.form, data.serviceOptions);
     initFooter(data.studio);
     initNav();
+    initVideoCourses();
     initParallax();
     initThreeScene();
     initReveal();
